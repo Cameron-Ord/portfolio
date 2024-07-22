@@ -1,0 +1,8 @@
+@import './base.css';
+
+.text_highlight {
+  color: var(--green);
+}
+.text_hl_purple {
+  color: var(--purple);
+}
