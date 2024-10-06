@@ -1,6 +1,41 @@
 <script setup lang="js">
 import { ref } from 'vue'
 const current_section = ref('intro_section')
+
+const is_string = (text) => {
+  return typeof text === 'string' || text instanceof String
+}
+
+const set_section = (text) => {
+  if (is_string(text)) {
+    current_section.value = text
+  }
+}
+
+const click_handler = (target) => {
+  if (target instanceof HTMLElement) {
+    const text = target.innerText
+
+    if (is_string(text)) {
+      switch (text) {
+        case 'About': {
+          set_section('about_section')
+          break
+        }
+
+        case 'Projects': {
+          set_section('projects_section')
+          break
+        }
+
+        case 'Contact': {
+          set_section('contact_section')
+          break
+        }
+      }
+    }
+  }
+}
 </script>
 
 <template>
@@ -20,14 +55,29 @@ const current_section = ref('intro_section')
         </div>
       </article>
       <article class="nav_article">
-        <h2 class="nav_tag">About</h2>
-        <h2 class="nav_tag">Projects</h2>
-        <h2 class="nav_tag">Contact</h2>
+        <h2 class="nav_tag" @click="click_handler($event.target)">About</h2>
+        <h2 class="nav_tag" @click="click_handler($event.target)">Projects</h2>
+        <h2 class="nav_tag" @click="click_handler($event.target)">Contact</h2>
       </article>
     </section>
-    <section class="about_section" v-else-if="current_section == 'about_section'"></section>
-    <section class="projects_section" v-else-if="current_section == 'projects_section'"></section>
-    <section class="contact_section" v-else-if="current_section == 'contact_section'"></section>
+    <section class="about_section" v-else-if="current_section == 'about_section'">
+      <article class="nav_article">
+        <h2 class="nav_tag" @click="click_handler($event.target)">Projects</h2>
+        <h2 class="nav_tag" @click="click_handler($event.target)">Contact</h2>
+      </article>
+    </section>
+    <section class="projects_section" v-else-if="current_section == 'projects_section'">
+      <article class="nav_article">
+        <h2 class="nav_tag" @click="click_handler($event.target)">About</h2>
+        <h2 class="nav_tag" @click="click_handler($event.target)">Contact</h2>
+      </article>
+    </section>
+    <section class="contact_section" v-else-if="current_section == 'contact_section'">
+      <article class="nav_article">
+        <h2 class="nav_tag" @click="click_handler($event.target)">About</h2>
+        <h2 class="nav_tag" @click="click_handler($event.target)">Projects</h2>
+      </article>
+    </section>
   </main>
 </template>
 
