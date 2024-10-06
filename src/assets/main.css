@@ -1,8 +1,7 @@
 @import './base.css';
 
-.text_highlight {
-  color: var(--green);
+.link_tag {
 }
-.text_hl_purple {
-  color: var(--purple);
+
+.nav_tag {
 }
